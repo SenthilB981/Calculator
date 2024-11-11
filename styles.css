@@ -1,0 +1,137 @@
+/* Reset styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: #0d0d0d;
+  font-family: 'Courier New', Courier, monospace;
+  overflow: hidden;
+}
+
+/* Neon grid background effect */
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* background: radial-gradient(circle at 50% 50%, rgba(0, 255, 255, 0.3), transparent 60%); */
+  background-size: 10px 10px;
+  opacity: 0.3;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.calculator {
+  background: #222;
+  border-radius: 15px;
+  width: 320px;
+  box-shadow: 0 4px 15px rgba(0, 255, 255, 0.3);
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+/* Screen styling */
+.screen {
+  background: linear-gradient(45deg, #000, #1a1a1a);
+  color: #0ff;
+  font-size: 2em;
+  padding: 20px;
+  text-align: right;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  font-family: 'Press Start 2P', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Flashing neon border for screen */
+.screen::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 2px solid rgba(0, 255, 255, 0.5);
+  animation: neonFlicker 1.5s infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes neonFlicker {
+  0% { opacity: 0.7; }
+  50% { opacity: 1; }
+  100% { opacity: 0.7; }
+}
+
+/* Buttons grid */
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+button {
+  background: #333;
+  color: #0ff;
+  font-size: 1.5em;
+  border: 1px solid #0ff;
+  padding: 15px;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  text-shadow: 0 0 4px #0ff;
+  font-family: 'Press Start 2P', sans-serif;
+}
+
+/* Glowing effect on hover */
+button:hover {
+  background: #444;
+  box-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff;
+}
+
+button:active {
+  animation: clickEffect 0.1s;
+  background: #555;
+  box-shadow: 0 0 5px #0ff, 0 0 15px #0ff;
+}
+
+@keyframes clickEffect {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Special styling for the '0' button */
+.zero {
+  grid-column: span 2;
+  font-size: 1.4em;
+}
+
+/* Custom style for each operator button */
+button:nth-child(4n) {
+  color: #ff0;
+  border-color: #ff0;
+  text-shadow: 0 0 4px #ff0;
+}
+
+button:nth-child(4n):hover {
+  box-shadow: 0 0 10px #ff0, 0 0 20px #ff0, 0 0 30px #ff0;
+}
+
+button:nth-child(4n):active {
+  box-shadow: 0 0 5px #ff0, 0 0 15px #ff0;
+}
